@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views import View
 from django.contrib.auth import authenticate,login
 from app.forms import CustomUserCreationForm
+from app.models import Product
 
 class Register(View):
     template_name = 'registration/register.html'
@@ -24,3 +25,6 @@ class Register(View):
             'form':form
         }
         return render(request,self.template_name,context)
+def index(request):
+    products = Product.objects.all()
+    return render(request,'product/index.html',{"products":products})

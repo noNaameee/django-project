@@ -6,3 +6,4 @@ urlpatterns = [
     path('register/',Register.as_view(),name='register'),
     path("password_reset/", views.PasswordResetView.as_view(), name="password_reset"),
 ]
+#python manage.py runserver

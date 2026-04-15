@@ -72,6 +72,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 AUTH_USER_MODEL = 'app.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 

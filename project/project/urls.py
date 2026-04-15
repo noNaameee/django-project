@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import path,include
+from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',TemplateView.as_view(template_name='home.html'),name='home'),
+    path('product/',views.index,name='product'),
     path('users/', include('app.urls')),
 ]
 #python manage.py runserver

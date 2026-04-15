@@ -1,0 +1,17 @@
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>site</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    {% if not is_not_show %}
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="{% url 'product' %}">Каталог</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
