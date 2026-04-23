@@ -2,12 +2,22 @@
 {% block content %}
 <h1>Products</h1>
 <table>
-    <thead><th>Название</th><th>Цена</th><th></th></thead>
-    {% for product in products%}
-    <tr>
-        <td> {{ product.name }} </td>
-        <td> {{ product.price }} рублей</td>
-    </tr>
+    {% for product in products %}
+    <div class="card" style="width: 18rem; margin: 15px">
+        {% with product_image=product.images.first %}
+             {% if product_image %}
+             <img src="{{ product_image.image.url }}" class="card-img-top" alt="{{ product.name }}">
+             {% else %}
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Нет изображения">
+            {% endif %}
+        {% endwith %}
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="cars-text">{{ product.price }} рублей</p>
+            <p class="card-text">{{ product.description }}</p>
+            <a href="#" class="btn btn-primary">В корзину</a>
+        </div>
+    </div>
     {% endfor %}
 </table>
 {% endblock %}

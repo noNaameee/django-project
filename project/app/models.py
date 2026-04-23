@@ -20,9 +20,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
-class PoductImage(models.Model):
+class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    images = models.ImageField(upload_to='products_images/')
+    image = models.ImageField(upload_to='products_images/')
     is_main = models.BooleanField(default=False)
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')

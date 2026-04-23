@@ -26,5 +26,5 @@ class Register(View):
         }
         return render(request,self.template_name,context)
 def index(request):
-    products = Product.objects.all()
+    products = Product.objects.prefetch_related('images').all()
     return render(request,'product/index.html',{"products":products})
