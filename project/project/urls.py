@@ -26,6 +26,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',TemplateView.as_view(template_name='home.html'),name='home'),
     path('product/',views.index,name='product'),
+    path('add-to-cart/<int:product_id>/',views.add_to_cart,name='add_to_cart'),
+    path('cart/',views.cart,name='cart'),
+    path('increase-quantity/<int:product_id>/',views.increase_quantity, name='increase_quantity'),
+    path('create-order/',views.create_order,name='create_order'),
+    path('order-succes/<int:order_id>/',views.order_succes,name='order_succes'),
     path('users/', include('app.urls')),
 ]
 #python manage.py runserver

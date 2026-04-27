@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Корзина</h1>
+{% if cart_items %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Изображение</th>
+            <th>Цена</th>
+            <th>Количество</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td> {{ item.product.name }} </td>
+            <td>
+                {% with image=item.product.images.first %}
+                    {% if image %}
+                        <img src="{{ image.image.url }}" alt="{{ item.product.name }}" width="50">
+                    {% else %}
+                        <img src="https://via.placeholder.com/50" alt="Нет изображения" width="50">
+                    {% endif %}
+                {% endwith %}
+            </td>
+            <td> {{ item.product.price }} руб</td>
+            <td>
+                <form action="{% url 'increase_quantity' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </form>
+                <span class="mx-2">{{ item.quantity }} </span>
+            </td>
+            <td> {{ item.total|floatformat:2}} руб</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Итого:</th>
+            <th>total_price</th>
+        </tr>
+    </tfoot>
+</table>
+<form action="{% url 'create_order'%}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success btn-lg">
+        Оформить заказ на сумму {{ total_price }} руб
+    </button>
+</form>
+{% else %}
+<p>Ваша корзина пуста</p>
+<a href="{% url 'product' %}">Перейти к покупкам</a>
+{% endif %}
+{% endblock %}

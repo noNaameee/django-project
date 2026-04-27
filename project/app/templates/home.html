@@ -7,6 +7,6 @@
         <button type="submit">Выход</button>
     </form>
     {% else %}
-    <a href="{% url 'login' %}">Вход</a>|<a href="{% url 'register' %}">Регистрация</a>
+    <a href="{% url 'login' %}" class="navbar-brand">Вход</a>|<a href="{% url 'register' %}" class="navbar-brand"> Регистрация</a>
     {% endif%}
 {% endblock %}
